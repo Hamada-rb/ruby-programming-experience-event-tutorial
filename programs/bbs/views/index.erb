@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Sinatra BBS</title>
+    </head>
+    <body>
+        <h1>BBS</h1>
+        <ul>
+            <% @comments.each do |comment| %>
+                <li>
+                    <%= comment%>
+                </li>
+            <% end %>
+        </ul>
+        <h2>Add New</h2>
+        <form method="post" action="/new">
+                <input type="text" name="body">
+                <input type="submit" value="post">
+        </form>
+    </body>
+</html>
