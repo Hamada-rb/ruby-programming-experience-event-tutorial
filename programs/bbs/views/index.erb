@@ -1,9 +1,9 @@
 <html>
     <head>
-        <title>Sinatra BBS</title>
+        <title>掲示板</title>
     </head>
     <body>
-        <h1>BBS</h1>
+        <h1>掲示板</h1>
         <ul>
             <% @comments.each do |comment| %>
                 <li>
@@ -11,7 +11,7 @@
                 </li>
             <% end %>
         </ul>
-        <h2>Add New</h2>
+        <h2>コメントする</h2>
         <form method="post" action="/new">
                 <input type="text" name="body">
                 <input type="submit" value="post">
