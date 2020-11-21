@@ -4,23 +4,23 @@
 
 浜田市が出しているCSVデータを加工できるプログラムを作ります。
 
+![csv image](./csv.png)
+
 ## チュートリアル
 
 まずは、浜田市の出しているCSVデータをダウンロードします。
 データは島根県オープンデータカタログサイトが出している[【浜田市】指定緊急避難場所一覧](https://shimane-opendata.jp/db/dataset/hamadaevacuationspace2020)を使います。
 
-まずは、[【浜田市】指定緊急避難場所一覧](https://shimane-opendata.jp/db/dataset/hamadaevacuationspace2020)にアクセスしてデータをダウンロードします。
+まずは、[こちらから](./hamada.csv)使用するCSVデータをダウンロードします。
 
-次に、ダウンロードしてきたデータをExcelなどのソフトで開きます。
-その後、新しいファイルとしてCSVで保存します。
 
-CSVとして保存した後は、`csv.rb`という名前のRubyのソースコードを作ります。
+次に、`csv.rb`という名前のRubyのソースコードを作ります。
 `csv.rb`には以下のコードを書きます。
 
 ```ruby
 require 'csv'
 
-CSV.foreach("<保存したCSVのファイル名>.csv", headers: true) do |row|
+CSV.foreach("hamada.csv", headers: true) do |row|
   puts row
 end
 ```
@@ -39,7 +39,7 @@ RubyではCSVを扱うためのライブラリがあり、それを使うこと�
 ```diff
 require 'csv'
 
-CSV.foreach("<保存したCSVのファイル名>.csv", headers: true) do |row|
+CSV.foreach("hamada.csv", headers: true) do |row|
 -  puts row
 +  puts row["名称"]
 end
@@ -58,7 +58,7 @@ require 'csv'
 + 
 + csv << ["名称", "住所", "電話番号"]
 +
-CSV.foreach("<保存したCSVのファイル名>.csv", headers: true) do |row|
+CSV.foreach("hamada.csv", headers: true) do |row|
 -  puts row["名称"]
 +  csv << [row["名称"], row["住所"], row["電話番号"]]
 end
