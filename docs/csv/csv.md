@@ -6,6 +6,23 @@
 
 ![csv image](./csv.png)
 
+このチュートリアルを終わった際に出来上がるソースコードは[こちら](https://github.com/Hamada-rb/ruby-programming-experience-event-tutorial/blob/master/programs/rss/hamada-rss.rb)になります。
+
+```ruby
+require 'rss'
+
+rss_feeds = RSS::Parser.parse "http://www.city.hamada.shimane.jp/www/rss/news.rdf", false
+
+search_word = ARGV[0].chomp
+
+rss_feeds.items.each do |feed|
+  if feed.title =~ /#{search_word}/
+    puts feed.title
+    puts feed.link
+  end
+end
+```
+
 ## チュートリアル
 
 まずは、浜田市の出しているCSVデータをダウンロードします。
