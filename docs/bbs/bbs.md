@@ -2,6 +2,8 @@
 
 [Sinatra](https://github.com/sinatra/sinatra/)を使った非常に簡単な掲示板アプリのチュートリアルです。
 
+![bbs demo](./bbs-demo.gif)
+
 ## チュートリアル
 
 まずは今回ライブラリとして使用する`sinatra`をインストールします。
