@@ -4,6 +4,49 @@
 
 ![bbs demo](./bbs-demo.gif)
 
+このチュートリアルを終わった際に出来上がるソースコードは[こちら](https://github.com/Hamada-rb/ruby-programming-experience-event-tutorial/tree/master/programs/bbs)になります。
+
+```ruby
+require 'sinatra'
+require 'sinatra/reloader'
+
+comments = []
+
+get '/' do
+    @comments = comments
+    erb :index
+end 
+
+post '/new' do
+    comments.push(params[:body])
+    redirect '/'
+end
+```
+
+```erb
+<html>
+    <head>
+        <title>掲示板</title>
+    </head>
+    <body>
+        <h1>掲示板</h1>
+        <ul>
+            <% @comments.each do |comment| %>
+                <li>
+                    <%= comment%>
+                </li>
+            <% end %>
+        </ul>
+        <h2>コメントする</h2>
+        <form method="post" action="/new">
+                <input type="text" name="body">
+                <input type="submit" value="post">
+        </form>
+    </body>
+</html>
+```
+
+
 ## チュートリアル
 
 まずは今回ライブラリとして使用する`sinatra`をインストールします。

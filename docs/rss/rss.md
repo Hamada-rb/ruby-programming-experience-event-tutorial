@@ -6,6 +6,20 @@
 
 ![rss demo](./rss-demo.gif)
 
+このチュートリアルを終わった際に出来上がるソースコードは[こちら](https://github.com/Hamada-rb/ruby-programming-experience-event-tutorial/blob/master/programs/csv/csv.rb)になります
+
+```ruby
+require 'csv'
+
+csv = CSV.open("result.csv", "wb", headers: true)
+
+csv << ["名称", "住所", "電話番号"]
+
+CSV.foreach("hamada.csv", headers: true) do |row|
+  csv << [row["名称"], row["住所"], row["電話番号"]]
+end
+```
+
 ## チュートリアル
 
 浜田市が出しているRSSフィードを使って知りたい情報だけを検索できるプログラムを作ります。
