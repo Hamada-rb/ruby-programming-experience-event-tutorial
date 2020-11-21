@@ -6,17 +6,20 @@
 
 ![rss demo](./rss-demo.gif)
 
-このチュートリアルを終わった際に出来上がるソースコードは[こちら](https://github.com/Hamada-rb/ruby-programming-experience-event-tutorial/blob/master/programs/csv/csv.rb)になります
+このチュートリアルを終わった際に出来上がるソースコードは[こちら](https://github.com/Hamada-rb/ruby-programming-experience-event-tutorial/blob/master/programs/rss/hamada-rss.rb)になります
 
 ```ruby
-require 'csv'
+require 'rss'
 
-csv = CSV.open("result.csv", "wb", headers: true)
+rss_feeds = RSS::Parser.parse "http://www.city.hamada.shimane.jp/www/rss/news.rdf", false
 
-csv << ["名称", "住所", "電話番号"]
+search_word = ARGV[0].chomp
 
-CSV.foreach("hamada.csv", headers: true) do |row|
-  csv << [row["名称"], row["住所"], row["電話番号"]]
+rss_feeds.items.each do |feed|
+  if feed.title =~ /#{search_word}/
+    puts feed.title
+    puts feed.link
+  end
 end
 ```
 
